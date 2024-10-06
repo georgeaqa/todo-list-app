@@ -1,7 +1,6 @@
-import { Animated, View, Pressable, Dimensions } from "react-native";
+import { Animated, View, Pressable } from "react-native";
 import { MaterialTopTabBarProps } from "@react-navigation/material-top-tabs";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { useMemo } from "react";
 export default function CustomTopTabBar({
   state,
   descriptors,
@@ -10,8 +9,6 @@ export default function CustomTopTabBar({
 }: MaterialTopTabBarProps) {
   const insets = useSafeAreaInsets();
   const inputRange = state.routes.map((_, i) => i);
-  const width = Dimensions.get("window").width;
-  const indicatorWidth = width / state.routes.length;
   return (
     <View
       className="flex-row h-16 bg-white"

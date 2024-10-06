@@ -1,6 +1,6 @@
-import { Animated, View, Pressable, Dimensions } from "react-native";
+import { Animated, View, Pressable } from "react-native";
+import { dimensions } from "@/src/constants";
 import { MaterialTopTabBarProps } from "@react-navigation/material-top-tabs";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useMemo } from "react";
 export default function CustomBottomTabBar({
   state,
@@ -13,7 +13,7 @@ export default function CustomBottomTabBar({
     [state.routes]
   );
 
-  const width = Dimensions.get("window").width;
+  const width = dimensions.width;
 
   const indicatorWidth = width / state.routes.length;
   return (

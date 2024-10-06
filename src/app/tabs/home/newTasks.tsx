@@ -1,15 +1,19 @@
-import React, { useEffect } from "react";
-import { CustomTask } from "@/src/components";
+import React from "react";
+import { CustomActivityIndicator, CustomTask } from "@/src/components";
 import { FlatList, View } from "react-native";
-import { useTaskStoreSelectors } from "@/src/store/store";
+import { useTaskStore } from "@/src/store/store";
 
 export default function newtask() {
-  const newTasks = useTaskStoreSelectors.use.new_tasks();
-  const setNewTasks = useTaskStoreSelectors.use.setNewTasks();
+  const { tasks, loading, error } = useTaskStore();
+  const newTasks = tasks.filter((task) => task.status === "new");
 
-  useEffect(() => {
-    setNewTasks();
-  }, []);
+  if (loading) {
+    return (
+      <View className="flex-1 justify-center items-center bg-white">
+        <CustomActivityIndicator />
+      </View>
+    );
+  }
 
   return (
     <View className="flex-1 bg-white p-2">

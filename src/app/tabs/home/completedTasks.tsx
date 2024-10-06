@@ -1,19 +1,24 @@
-import React, { useEffect } from "react";
-import { CustomTask } from "@/src/components";
+import React from "react";
+import { CustomActivityIndicator, CustomTask } from "@/src/components";
 import { FlatList, View } from "react-native";
-import { useTaskStoreSelectors } from "@/src/store/store";
+import { useTaskStore } from "@/src/store/store";
 
 export default function completedTasks() {
-  const tasks = useTaskStoreSelectors.use.completed_tasks();
-  const setCompletedTasks = useTaskStoreSelectors.use.setCompletedTasks();
+  const { tasks, loading, error } = useTaskStore();
+  const completedTasks = tasks.filter((task) => task.status === "completed");
 
-  useEffect(() => {
-    setCompletedTasks();
-  }, []);
+  if (loading) {
+    return (
+      <View className="flex-1 justify-center items-center bg-white">
+        <CustomActivityIndicator />
+      </View>
+    );
+  }
+
   return (
     <View className="flex-1 bg-white p-2">
       <FlatList
-        data={tasks}
+        data={completedTasks}
         renderItem={({ item }) => <CustomTask task={item} />}
         keyExtractor={(item) => item.id.toString()}
         contentContainerClassName="gap-2"

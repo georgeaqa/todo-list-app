@@ -1,10 +1,19 @@
 import React from "react";
-import { CustomTask } from "@/src/components";
+import { CustomActivityIndicator, CustomTask } from "@/src/components";
 import { FlatList, View } from "react-native";
-import { useTaskStoreSelectors } from "@/src/store/store";
+import { useTaskStore } from "@/src/store/store";
 
 export default function allTasks() {
-  const tasks = useTaskStoreSelectors.use.tasks();
+  const { tasks, loading, error } = useTaskStore();
+
+  if (loading) {
+    return (
+      <View className="flex-1 justify-center items-center bg-white">
+        <CustomActivityIndicator />
+      </View>
+    );
+  }
+
   return (
     <View className="flex-1 bg-white p-2">
       <FlatList
