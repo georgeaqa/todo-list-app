@@ -8,7 +8,7 @@ import {
 import { withLayoutContext } from "expo-router";
 import { ParamListBase, TabNavigationState } from "@react-navigation/native";
 import { CustomIcon, CustomBottomTabBar } from "@/src/components";
-import { icons } from "lucide-react-native";
+import { Tab } from "@/src/types/types";
 import { useTaskStore } from "@/src/store/store";
 import { useEffect } from "react";
 const { Navigator } = createMaterialTopTabNavigator();
@@ -26,19 +26,13 @@ export default function TabsLayout() {
     return <Redirect href="/auth/signIn" />;
   }
 
-  const { getTasks, subscribeToRealTimeChanges } = useTaskStore();
+  const { getRealTimeChanges, getTasks } = useTaskStore();
   useEffect(() => {
     if (user) {
       getTasks(user?.id || "");
     }
-    subscribeToRealTimeChanges();
+    getRealTimeChanges(user?.id || "");
   }, [user]);
-
-  type Tab = {
-    name: string;
-    icon: keyof typeof icons;
-    label: string;
-  };
 
   const tabs: Tab[] = [
     {
