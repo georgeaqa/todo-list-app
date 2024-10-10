@@ -2,14 +2,14 @@ import { Pressable, PressableProps, Text } from "react-native";
 
 type CustomButtonProps = PressableProps & {
   className?: string;
-  tittle?: string;
+  title?: string;
   iconLeft?: React.ReactNode;
   iconRight?: React.ReactNode;
 };
 
 export default function CustomButton({
   className,
-  tittle,
+  title,
   iconLeft,
   iconRight,
   ...props
@@ -20,7 +20,7 @@ export default function CustomButton({
       {...props}
     >
       {iconLeft && iconLeft}
-      <Text className="font-bold">{tittle}</Text>
+      <Text className="font-bold">{title}</Text>
       {iconRight && iconRight}
     </Pressable>
   );

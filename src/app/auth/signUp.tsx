@@ -111,13 +111,13 @@ export default function SignUpScreen() {
             <CustomButton
               iconLeft={<CustomIcon name="UserPlus" />}
               onPress={() => handleSignUp()}
-              tittle="Crear cuenta"
+              title="Crear cuenta"
             />
 
             <CustomButton
               iconLeft={<CustomIcon name="LogIn" />}
               onPress={() => router.back()}
-              tittle="Iniciar Sesión"
+              title="Iniciar Sesión"
             />
           </View>
         </Pressable>

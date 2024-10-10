@@ -21,21 +21,22 @@ const getTextColor = (status: string) => {
 
 export default function CustomTask({ task }: CustomTaskProps) {
   return (
-    <View className="flex-row justify-between items-center bg-white p-2 gap-2 rounded-xl border-2 shadow-md shadow-black">
+    <View className="justify-center bg-white p-2 gap-2 rounded-xl border-2 shadow-md shadow-black">
       <View className="flex-1">
         <Text className="text-lg font-bold">{task.title}</Text>
-        <Text className="text-sm font-bold text-gray-500">
-          {formatDate(task.created_at)}
-        </Text>
-        <Text className={`text-sm font-bold ${getTextColor(task.status)}`}>
-          {task.status === "completed"
-            ? "Completada"
-            : task.status === "inProgress"
-            ? "En progreso"
-            : "Nueva"}
-        </Text>
+        <View className="flex-row justify-between items-center">
+          <Text className="text-sm font-bold text-gray-500">
+            {formatDate(task.created_at)}
+          </Text>
+          <Text className={`text-sm font-bold ${getTextColor(task.status)}`}>
+            {task.status === "completed"
+              ? "Completada"
+              : task.status === "inProgress"
+              ? "En progreso"
+              : "Nueva"}
+          </Text>
+        </View>
       </View>
-      <CustomIcon name="Trash" color="red" />
     </View>
   );
 }
