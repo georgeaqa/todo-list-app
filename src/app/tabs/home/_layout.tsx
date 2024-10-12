@@ -40,7 +40,7 @@ export default function HomeLayout() {
         tabBar={(props) => <CustomTopTabBar {...props} />}
       />
       <Pressable
-        className="w-14 h-14 bg-white absolute right-4 bottom-4 rounded-full justify-center items-center border-2"
+        className="w-14 h-14 bg-white absolute right-4 bottom-4 rounded-full justify-center items-center border-2 shadow-md shadow-black"
         onPress={() => setModalVisible(true)}
       >
         <CustomIcon name="Plus" size={24} color="black" />
